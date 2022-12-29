@@ -31,7 +31,11 @@ class MongoPipeline:
         self.client.close()
 
     def process_item(self, item, spider):
-        self.db[self.collection_name].insert_one(ItemAdapter(item).asdict())
+        existing_item = self.db[self.collection_name].find_one({'jobId':item['jobId']})
+        if existing_item is None:
+            self.db[self.collection_name].insert_one(ItemAdapter(item).asdict())
+        else:
+            print('Duplicate item found')
         return item
 
 class ScraperPipeline:
