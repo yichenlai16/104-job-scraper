@@ -5,7 +5,9 @@ name = "pypi"
 
 [packages]
 scrapy = "*"
-pymongo = "*"
+elasticsearch = "*"
+elasticsearch-dsl = "*"
+python-dotenv = "*"
 
 [dev-packages]
 autopep8 = "*"
